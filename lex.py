@@ -77,7 +77,7 @@ tokens = (
     'TRY',
     'TYPEOF',
     'VOID',
-    'WHILE LP'
+    'WHILE_LP'
 )
 # AND symbol &
 # ASSIG symbol =
