@@ -79,6 +79,19 @@ tokens = (
     'VOID',
     'WHILE_LP'
 )
+
+reserved = {
+    'shared' : 'SHARED',
+    'sizeof' : 'SIZEOF',
+    'string' : 'STRING',
+    'terminate' : 'TERMINATE',
+    'throw' : 'THROW',
+    'true' : 'TRUE',
+    'try' : 'TRY',
+    'typeof' : 'TYPEOF',
+    'void' : 'VOID'
+}
+
 # AND symbol &
 # ASSIG symbol =
 # BOOL keyword bool
@@ -107,6 +120,11 @@ tokens = (
 # GOTO keyword goto
 # GTGT symbol >>
 # ID identier
+def t_ID(t):
+    r'\b(?!(while|if)\b)[a-zA-Z_][0-9a-zA-Z_]*\b'
+    if t.value in reserved:
+        t.type = reserved[ t.value ]
+    return t
 # ID LP ID followed by (
 # ID COLON ID followed by :
 # IDOF keyword ideof
@@ -121,6 +139,7 @@ tokens = (
 # LTLT symbol <<
 # MAIN LP keyword main followed by (
 # MINUS symbol -
+t_MINUS   = r'-'
 # MINUSMINUS symbol --
 # MOD symbol %
 # NEQ symbol !=
@@ -134,6 +153,7 @@ tokens = (
 # PEEKNOTELSE the lookahead token indicating that the next token is not ELSE
 # PERM keyword permanent
 # PLUS symbol +
+t_PLUS    = r'\+'
 # PLUSPLUS symbol ++
 # PRETURN keyword @return
 # PRIVATE keyword private
@@ -142,27 +162,36 @@ tokens = (
 # RETURN keyword return
 # RP symbol )
 # RS symbol ]
+t_RS = r'\]'
 # SEPICOL symbol ;
+t_SEPICOL = r';'
 # SHARED keyword shared
+t_SHARED = r'shared'
 # SIZEOF keyword sizeof
-# Appendix B 387
+t_SIZEOF = r'sizeof'
 # SLASH symbol /
-# STAR symbol *
-# STRING keyword string
-# STRING LIT string literal
-# TERMINATE keyword terminate
-# THROW keyword throw
-# TRUE keyword true
-# TRY keyword try
-# TYPEOF keyword typeof
-# VOID keyword void
-# WHILE LP keyword while followed by (
-
-# Regular expression rules for simple tokens
-t_PLUS    = r'\+'
-t_MINUS   = r'-'
-t_STAR    = r'\*'
 t_SLASH   = r'/'
+# STAR symbol *
+t_STAR    = r'\*'
+# STRING keyword string
+t_STRING = r'string'
+# STRING LIT string literal
+t_STRING_LIT = r'"(\.|[^"])*"'
+# TERMINATE keyword terminate
+t_TERMINATE = r'terminate'
+# THROW keyword throw
+t_THROW = r'throw'
+# TRUE keyword true
+t_TRUE = r'true'
+# TRY keyword try
+t_TRY = r'try'
+# TYPEOF keyword typeof
+t_TYPEOF = r'typeof'
+# VOID keyword void
+t_VOID = r'void'
+# WHILE LP keyword while followed by (
+t_WHILE_LP = r'while\('
+
 
 
 # A regular expression rule with some action code
@@ -189,8 +218,17 @@ lexer = lex.lex()
 
 # Test it out
 data = '''
-3 + 4 * 10
-  + -20 *2
+  3 + 4 * 10 + -20 *2 
+  try
+  shared
+  sizeof
+  terminate
+  throw
+  true
+  typeof
+  void
+  while(
+  string adasd "while3+ !%@dalkjda*(&&)(><:?{4``10 <=> $^#&+()_=+"
 '''
 
 # Give the lexer some input
