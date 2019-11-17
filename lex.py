@@ -103,6 +103,13 @@ t_CONST   = r'const'
 t_CONTINUE= r'continue'
 =======
 reserved = {
+    'bool'   : 'BOOL',
+    'break'  : 'BREAK',
+    'catch'  : 'CATCH',
+    'char'   : 'CHAR',
+    'class'  : 'CLASS',
+    'const'  : 'CONST',
+    'continue':'CONTINUE',
     'shared' : 'SHARED',
     'sizeof' : 'SIZEOF',
     'string' : 'STRING',
