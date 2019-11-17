@@ -79,6 +79,7 @@ tokens = (
     'WHILE_LP'
 )
 
+<<<<<<< HEAD
 
 # Regular expression rules for simple tokens
 t_PLUS    = r'\+'
@@ -100,6 +101,120 @@ t_COLON   = r':'
 t_COMMA   = r','
 t_CONST   = r'const'
 t_CONTINUE= r'continue'
+=======
+reserved = {
+    'shared' : 'SHARED',
+    'sizeof' : 'SIZEOF',
+    'string' : 'STRING',
+    'terminate' : 'TERMINATE',
+    'throw' : 'THROW',
+    'true' : 'TRUE',
+    'try' : 'TRY',
+    'typeof' : 'TYPEOF',
+    'void' : 'VOID'
+}
+
+# AND symbol &
+# ASSIG symbol =
+# BOOL keyword bool
+# BREAK keyword break
+# CATCH keyword catch
+# CHAR keyword char
+# CHAR LIT char literal
+# CLASS keyword class
+# CLASSNAME identier that has been previously dened or declared
+# as a name of a class
+# CLASSNAME DOT CLASSANAME followed by .
+# CLASSNAME LP CLASSANAME followed by (
+# COLON symbol :
+# COMMA symbol ,
+# CONST keyword const
+# CONTINUE keyword continue
+# DOT symbol .
+# ELSE keyword else
+# EQ symbol ==
+# EXTENDS keyword extends
+# FALSE keyword false
+# FLOAT keyword float
+# FLOAT LIT float literal
+# FOR LP keyword for followed by (
+# GE symbol >=
+# GOTO keyword goto
+# GTGT symbol >>
+# ID identier
+def t_ID(t):
+    r'\b(?!(while|if)\b)[a-zA-Z_][0-9a-zA-Z_]*\b'
+    if t.value in reserved:
+        t.type = reserved[ t.value ]
+    return t
+# ID LP ID followed by (
+# ID COLON ID followed by :
+# IDOF keyword ideof
+# IF LP keyword if followed by (
+# INT keyword int
+# INT LIT int literal
+# LB symbol {
+# LE symbol <=
+# LP symbol (
+# LS symbol [
+# LT symbol <
+# LTLT symbol <<
+# MAIN LP keyword main followed by (
+# MINUS symbol -
+t_MINUS   = r'-'
+# MINUSMINUS symbol --
+# MOD symbol %
+# NEQ symbol !=
+# NEW keyword new
+# NOREF keyword noref
+# NOT symbol !
+# OR symbol |
+# PARENT DOT PARENT followed by .
+# PARENT LP PARENT followed by (
+# PASSIG symbol @=
+# PEEKNOTELSE the lookahead token indicating that the next token is not ELSE
+# PERM keyword permanent
+# PLUS symbol +
+t_PLUS    = r'\+'
+# PLUSPLUS symbol ++
+# PRETURN keyword @return
+# PRIVATE keyword private
+# PUBLIC keyword public
+# RB symbol }
+# RETURN keyword return
+# RP symbol )
+# RS symbol ]
+t_RS = r'\]'
+# SEPICOL symbol ;
+t_SEPICOL = r';'
+# SHARED keyword shared
+t_SHARED = r'shared'
+# SIZEOF keyword sizeof
+t_SIZEOF = r'sizeof'
+# SLASH symbol /
+t_SLASH   = r'/'
+# STAR symbol *
+t_STAR    = r'\*'
+# STRING keyword string
+t_STRING = r'string'
+# STRING LIT string literal
+t_STRING_LIT = r'"(\.|[^"])*"'
+# TERMINATE keyword terminate
+t_TERMINATE = r'terminate'
+# THROW keyword throw
+t_THROW = r'throw'
+# TRUE keyword true
+t_TRUE = r'true'
+# TRY keyword try
+t_TRY = r'try'
+# TYPEOF keyword typeof
+t_TYPEOF = r'typeof'
+# VOID keyword void
+t_VOID = r'void'
+# WHILE LP keyword while followed by (
+t_WHILE_LP = r'while\('
+
+>>>>>>> f25f8d75e6771f8efcb64aa9dd7822cff102883a
 
 
 # A regular expression rule with some action code
@@ -132,10 +247,24 @@ lexer = lex.lex()
 
 # Test it out
 data = '''
+<<<<<<< HEAD
 bool &
 char p = "x"
 
 class Boxes()
+=======
+  3 + 4 * 10 + -20 *2 
+  try
+  shared
+  sizeof
+  terminate
+  throw
+  true
+  typeof
+  void
+  while(
+  string adasd "while3+ !%@dalkjda*(&&)(><:?{4``10 <=> $^#&+()_=+"
+>>>>>>> f25f8d75e6771f8efcb64aa9dd7822cff102883a
 '''
 
 # Give the lexer some input
