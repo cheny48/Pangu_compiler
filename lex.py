@@ -118,25 +118,50 @@ t_CONST   = r'const'
 # CONTINUE keyword continue
 t_CONTINUE= r'continue'
 # DOT symbol .
+t_DOT     = r'\.'
 # ELSE keyword else
+t_ELSE    = r'else'
 # EQ symbol ==
+t_EQ      = r'=='
 # EXTENDS keyword extends
+t_EXTENDS = r'extends'
 # FALSE keyword false
+t_FALSE   = r'false'
 # FLOAT keyword float
+t_FLOAT   = r'float' 
 # FLOAT LIT float literal
+# Numbers with a decimal point. No leading zeros or embedded spaces allowed. 
+# May miss the integer or fractional part, but not both
+def t_FLOAT_LIT(t):
+    r'[-\+]?(\.[0-9]+)|(0\.[0-9]*)|([1-9][0-9]*\.[0-9]*)'
+    t.value = float(t.value)
+    return t
 # FOR LP keyword for followed by (
+def t_FOR_LP(t):
+  r'for(?=\s*\()'
+  return t
 # GE symbol >=
+t_GE      = r'>='
 # GOTO keyword goto
+t_GOTO    = r'goto'
 # GTGT symbol >>
+t_GTGT    = r'>>'
+# ID LP ID followed by (
+def t_ID_LP(t):
+  r'[a-zA-Z_][a-zA-Z_0-9]{0,255}(?=\s*\()'
+  return t
+# ID COLON ID followed by :
+def t_ID_COLON(t):
+  r'[a-zA-Z_][a-zA-Z_0-9]{0,255}(?=\s*:)'
+  return t
 # ID identier
 def t_ID(t):
     r'\b(?!(while|if|parent)\b)[a-zA-Z_][0-9a-zA-Z_]*\b'
     if t.value in reserved:
         t.type = reserved[ t.value ]
     return t
-# ID LP ID followed by (
-# ID COLON ID followed by :
 # IDOF keyword ideof
+t_IDOF    = r'ideof' 
 # IF LP keyword if followed by (
 t_IF_LP   = r'if\('
 # INT keyword int
@@ -252,6 +277,12 @@ reserved = {
     'private' : 'PRIVATE',
     'public' : 'PUBLIC',
     'return' : 'RETURN',
+    'else'      : 'ELSE',
+    'extends'   : 'EXTENDS',
+    'false'     : 'FALSE', 
+    'float'     : 'FLOAT',
+    'goto'      : 'GOTO', 
+    'ideof'     : 'IDOF',
 }
 
 
@@ -296,6 +327,7 @@ class Boxes()
 
     !+|+@= +
     ++ + } + permanent + ) + @return parent. @= parent(
+  . else == extends false float 3.2 for () >= goto >> x y x( y : ideof for3  er : 0. .0 
 '''
 
 # Give the lexer some input
