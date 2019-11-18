@@ -224,30 +224,12 @@ t_RB   = r'}'
 t_RP   = r'\)'
 # SEPICOL symbol ;
 t_SEPICOL = r';'
-# SHARED keyword shared
-t_SHARED = r'shared'
-# SIZEOF keyword sizeof
-t_SIZEOF = r'sizeof'
 # SLASH symbol /
 t_SLASH   = r'/'
 # STAR symbol *
 t_STAR    = r'\*'
-# STRING keyword string
-t_STRING = r'string'
 # STRING LIT string literal
 t_STRING_LIT = r'"(\.|[^"])*"'
-# TERMINATE keyword terminate
-t_TERMINATE = r'terminate'
-# THROW keyword throw
-t_THROW = r'throw'
-# TRUE keyword true
-t_TRUE = r'true'
-# TRY keyword try
-t_TRY = r'try'
-# TYPEOF keyword typeof
-t_TYPEOF = r'typeof'
-# VOID keyword void
-t_VOID = r'void'
 # WHILE LP keyword while followed by (
 t_WHILE_LP = r'while\('
 
