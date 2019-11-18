@@ -130,7 +130,7 @@ t_CONTINUE= r'continue'
 # GTGT symbol >>
 # ID identier
 def t_ID(t):
-    r'\b(?!(while|if)\b)[a-zA-Z_][0-9a-zA-Z_]*\b'
+    r'\b(?!(while|if|parent)\b)[a-zA-Z_][0-9a-zA-Z_]*\b'
     if t.value in reserved:
         t.type = reserved[ t.value ]
     return t
@@ -173,24 +173,30 @@ t_NEW     = r'new'
 # NOREF keyword noref
 t_NOREF   = r'noref'
 # NOT symbol !
+t_NOT   = r'\!'
 # OR symbol |
+t_OR    = r'\|'
 # PARENT DOT PARENT followed by .
+t_PARENT_DOT = r'parent.'
 # PARENT LP PARENT followed by (
+t_PARENT_LP = r'parent\('
 # PASSIG symbol @=
+t_PASSIG = r'@='
 # PEEKNOTELSE the lookahead token indicating that the next token is not ELSE
-# PERM keyword permanent
+def t_PEEKNOTELSE(t):
+    r'\b(?!(else)\b)\.+\b'
+    return t
 # PLUS symbol +
 t_PLUS    = r'\+'
 # PLUSPLUS symbol ++
+t_PLUSPLUS = r'\+\+'
 # PRETURN keyword @return
-# PRIVATE keyword private
-# PUBLIC keyword public
+t_PRETURN = r'@return'
 # RB symbol }
+t_RB   = r'}'
 # RETURN keyword return
 # RP symbol )
-t_RP = r'\)'
-# RS symbol ]
-t_RS = r'\]'
+t_RP   = r'\)'
 # SEPICOL symbol ;
 t_SEPICOL = r';'
 # SHARED keyword shared
@@ -220,7 +226,7 @@ t_VOID = r'void'
 # WHILE LP keyword while followed by (
 t_WHILE_LP = r'while\('
 
-# >>>>>>> f25f8d75e6771f8efcb64aa9dd7822cff102883a
+
 
 reserved = {
     'bool'   : 'BOOL',
@@ -241,7 +247,11 @@ reserved = {
     'void' : 'VOID',
     'int' : 'INT',
     'new' : 'NEW',
-    'noref' : 'NOREF'
+    'noref' : 'NOREF',
+    'permanent' : 'PERM',
+    'private' : 'PRIVATE',
+    'public' : 'PUBLIC',
+    'return' : 'RETURN',
 }
 
 
@@ -282,7 +292,10 @@ class Boxes()
   string adasd "while3+ !%@dalkjda*(&&)(><:?{4``10 <=> $^#&+()_=+"
   + -20 *2 5%2
   <=  if( 8+* ( mainly aif newly lynew ifa
->>>>>>> f25f8d75e6771f8efcb64aa9dd7822cff102883a
+  f25f8d75e6771f8efcb64aa9dd7822cff102883a
+
+    !+|+@= +
+    ++ + } + permanent + ) + @return parent. @= parent(
 '''
 
 # Give the lexer some input
