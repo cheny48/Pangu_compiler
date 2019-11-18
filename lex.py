@@ -79,64 +79,44 @@ tokens = (
     'WHILE_LP'
 )
 
-<<<<<<< HEAD
 
 # Regular expression rules for simple tokens
-t_PLUS    = r'\+'
-t_MINUS   = r'-'
-t_STAR    = r'\*'
-t_SLASH   = r'/'
-t_AND     = r'&'
-t_ASSIGN  = r'='
-t_BOOL    = r'bool'
-t_BREAK   = r'break'
-t_CATCH   = r'catch'
-t_CHAR    = r'char'
-#t_CHAR_LIT=  r'\"[a-zA-Z]{1}\"' Made with action code 
-t_CLASS   = r'class'
-t_CLASSNAME= r'[A-Z][a-zA-Z_0-9]*' 
-t_CLASSNAME_DOT = r'\.'
-t_CLASSNAME_LP  = r'\('
-t_COLON   = r':'
-t_COMMA   = r','
-t_CONST   = r'const'
-t_CONTINUE= r'continue'
-=======
-reserved = {
-    'bool'   : 'BOOL',
-    'break'  : 'BREAK',
-    'catch'  : 'CATCH',
-    'char'   : 'CHAR',
-    'class'  : 'CLASS',
-    'const'  : 'CONST',
-    'continue':'CONTINUE',
-    'shared' : 'SHARED',
-    'sizeof' : 'SIZEOF',
-    'string' : 'STRING',
-    'terminate' : 'TERMINATE',
-    'throw' : 'THROW',
-    'true' : 'TRUE',
-    'try' : 'TRY',
-    'typeof' : 'TYPEOF',
-    'void' : 'VOID'
-}
 
 # AND symbol &
+t_AND     = r'&'
 # ASSIG symbol =
+t_ASSIGN  = r'='
 # BOOL keyword bool
+t_BOOL    = r'bool'
 # BREAK keyword break
+t_BREAK   = r'break'
 # CATCH keyword catch
+t_CATCH   = r'catch'
 # CHAR keyword char
+t_CHAR    = r'char'
+#t_CHAR_LIT=  r'\"[a-zA-Z]{1}\"' Made with action code
 # CHAR LIT char literal
+def t_CHAR_LIT(t):
+    r'\"[a-zA-Z]{1}\"'
+    t.value = t.value[1]
+    return t
 # CLASS keyword class
+t_CLASS   = r'class'
 # CLASSNAME identier that has been previously dened or declared
 # as a name of a class
+t_CLASSNAME= r'[A-Z][a-zA-Z_0-9]*'
 # CLASSNAME DOT CLASSANAME followed by .
+t_CLASSNAME_DOT = r'\.'
 # CLASSNAME LP CLASSANAME followed by (
+t_CLASSNAME_LP  = r'\('
 # COLON symbol :
+t_COLON   = r':'
 # COMMA symbol ,
+t_COMMA   = r','
 # CONST keyword const
+t_CONST   = r'const'
 # CONTINUE keyword continue
+t_CONTINUE= r'continue'
 # DOT symbol .
 # ELSE keyword else
 # EQ symbol ==
@@ -158,22 +138,40 @@ def t_ID(t):
 # ID COLON ID followed by :
 # IDOF keyword ideof
 # IF LP keyword if followed by (
+t_IF_LP   = r'if\('
 # INT keyword int
+t_INT     = r'int'
 # INT LIT int literal
+def t_INT_LIT(t):
+    r'\d+'
+    t.value = int(t.value)
+    return t
 # LB symbol {
+t_LB      = r'\{'
 # LE symbol <=
+t_LE      = r'<='
 # LP symbol (
+t_LP      = r'\('
 # LS symbol [
+t_LS      = r'\['
 # LT symbol <
+t_LT      = r'\<'
 # LTLT symbol <<
+t_LTLT    = r'\<\<'
 # MAIN LP keyword main followed by (
+t_MAIN_LP = r'main\('
 # MINUS symbol -
 t_MINUS   = r'-'
 # MINUSMINUS symbol --
+t_MINUSMINUS = r'--'
 # MOD symbol %
+t_MOD     = r'\%'
 # NEQ symbol !=
+t_NEQ     = r'!='
 # NEW keyword new
+t_NEW     = r'new'
 # NOREF keyword noref
+t_NOREF   = r'noref'
 # NOT symbol !
 # OR symbol |
 # PARENT DOT PARENT followed by .
@@ -190,6 +188,7 @@ t_PLUS    = r'\+'
 # RB symbol }
 # RETURN keyword return
 # RP symbol )
+t_RP = r'\)'
 # RS symbol ]
 t_RS = r'\]'
 # SEPICOL symbol ;
@@ -221,20 +220,30 @@ t_VOID = r'void'
 # WHILE LP keyword while followed by (
 t_WHILE_LP = r'while\('
 
->>>>>>> f25f8d75e6771f8efcb64aa9dd7822cff102883a
+# >>>>>>> f25f8d75e6771f8efcb64aa9dd7822cff102883a
 
+reserved = {
+    'bool'   : 'BOOL',
+    'break'  : 'BREAK',
+    'catch'  : 'CATCH',
+    'char'   : 'CHAR',
+    'class'  : 'CLASS',
+    'const'  : 'CONST',
+    'continue':'CONTINUE',
+    'shared' : 'SHARED',
+    'sizeof' : 'SIZEOF',
+    'string' : 'STRING',
+    'terminate' : 'TERMINATE',
+    'throw' : 'THROW',
+    'true' : 'TRUE',
+    'try' : 'TRY',
+    'typeof' : 'TYPEOF',
+    'void' : 'VOID',
+    'int' : 'INT',
+    'new' : 'NEW',
+    'noref' : 'NOREF'
+}
 
-# A regular expression rule with some action code
-def t_INT(t):
-    r'\d+'
-    t.value = int(t.value)
-    return t
-
-
-def t_CHAR_LIT(t):
-    r'\"[a-zA-Z]{1}\"'
-    t.value = t.value[1]
-    return t 
 
 # Define a rule so we can track line numbers
 def t_newline(t):
@@ -260,7 +269,7 @@ char p = "x"
 
 class Boxes()
 =======
-  3 + 4 * 10 + -20 *2 
+  3 + 4 * 10 + -20 *2
   try
   shared
   sizeof
@@ -271,6 +280,8 @@ class Boxes()
   void
   while(
   string adasd "while3+ !%@dalkjda*(&&)(><:?{4``10 <=> $^#&+()_=+"
+  + -20 *2 5%2
+  <=  if( 8+* ( mainly aif newly lynew ifa
 >>>>>>> f25f8d75e6771f8efcb64aa9dd7822cff102883a
 '''
 
