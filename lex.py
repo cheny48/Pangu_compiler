@@ -80,35 +80,12 @@ tokens = (
     'WHILE_LP'
 )
 
-digit            = r'([0-9])'
-nondigit         = r'([_A-Za-z])'
-identifier       = r'((?!(while|if|parent | main |for|([a-zA-Z][0-9a-zA-Z]*[:\()]))\b)' + nondigit + r'(' + digit + r'|' + nondigit + r')*)'
-identifier_lp    = r'(' + identifier + r'\()'
-identifier_colon = r'(' + identifier + r':)'
-
 # Regular expression rules for simple tokens
 
 # AND symbol &
 t_AND     = r'&'
 # ASSIG symbol =
 t_ASSIGN  = r'='
-# BOOL keyword bool
-# t_BOOL    = r'bool'
-# BREAK keyword break
-# t_BREAK   = r'break'
-# CATCH keyword catch
-# t_CATCH   = r'catch'
-# CHAR keyword char
-# t_CHAR    = r'char'
-#t_CHAR_LIT=  r'\"[a-zA-Z]{1}\"' Made with action code
-# CHAR LIT char literal
-def t_CHAR_LIT(t):
-    r'\"[a-zA-Z]{1}\"'
-    t.value = t.value[1]
-    return t
-# CLASS keyword class
-# t_CLASS   = r'class'
-# CLASSNAME identier that has been previously dened or declared
 # as a name of a class
 t_CLASSNAME= r'[A-Z][a-zA-Z_0-9]*'
 # CLASSNAME DOT CLASSANAME followed by .
@@ -119,64 +96,18 @@ t_CLASSNAME_LP  = r'[A-Z][a-zA-Z_0-9]*\('
 t_COLON   = r':'
 # COMMA symbol ,
 t_COMMA   = r','
-# CONST keyword const
-# t_CONST   = r'const'
-# CONTINUE keyword continue
-# t_CONTINUE= r'continue'
 # DOT symbol .
 t_DOT     = r'\.'
-# ELSE keyword else
-# t_ELSE    = r'else'
 # EQ symbol ==
 t_EQ      = r'=='
-# EXTENDS keyword extends
-# t_EXTENDS = r'extends'
-# FALSE keyword false
-# t_FALSE   = r'false'
-# FLOAT keyword float
-# t_FLOAT   = r'float'
-# FLOAT LIT float literal
-# Numbers with a decimal point. No leading zeros or embedded spaces allowed.
-# May miss the integer or fractional part, but not both
-def t_FLOAT_LIT(t):
-    r'[-\+]?(\.[0-9]+)|(0\.[0-9]*)|([1-9][0-9]*\.[0-9]*)'
-    t.value = float(t.value)
-    return t
-# FOR LP keyword for followed by (
-def t_FOR_LP(t):
-  r'for(?=\s*\()'
-  return t
 # GE symbol >=
 t_GE      = r'>='
-# GOTO keyword goto
-# t_GOTO    = r'goto'
 # GTGT symbol >>
 t_GTGT    = r'>>'
-@TOKEN(identifier_lp)
-def t_ID_LP(t):
-    return t
-# # ID COLON ID followed by :
-
-@TOKEN(identifier_colon)
-def t_ID_COLON(t):
-    return t
-# ID identier
-@TOKEN(identifier)
-def t_ID(t):
-    if t.value in reserved:
-        t.type = reserved[ t.value ]
-    return t
-# IDOF keyword ideof
-# t_IDOF    = r'ideof'
 # IF LP keyword if followed by (
 t_IF_LP   = r'if\('
 # INT keyword int
 t_INT     = r'int'
-# INT LIT int literal
-def t_INT_LIT(t):
-    r'\d+'
-    t.value = int(t.value)
-    return t
 # LB symbol {
 t_LB      = r'\{'
 # LE symbol <=
@@ -199,10 +130,6 @@ t_MINUSMINUS = r'--'
 t_MOD     = r'\%'
 # NEQ symbol !=
 t_NEQ     = r'!='
-# NEW keyword new
-# t_NEW     = r'new'
-# NOREF keyword noref
-# t_NOREF   = r'noref'
 # NOT symbol !
 t_NOT   = r'\!'
 # OR symbol |
@@ -213,10 +140,6 @@ t_PARENT_DOT = r'parent.'
 t_PARENT_LP = r'parent\('
 # PASSIG symbol @=
 t_PASSIG = r'@='
-# PEEKNOTELSE the lookahead token indicating that the next token is not ELSE
-def t_PEEKNOTELSE(t):
-    r'\b(?!(else)\b)\.+\b'
-    return t
 # PLUS symbol +
 t_PLUS    = r'\+'
 # PLUSPLUS symbol ++
@@ -225,7 +148,6 @@ t_PLUSPLUS = r'\+\+'
 t_PRETURN = r'@return'
 # RB symbol }
 t_RB   = r'}'
-# RETURN keyword return
 # RP symbol )
 t_RP   = r'\)'
 # SEPICOL symbol ;
@@ -238,9 +160,50 @@ t_STAR    = r'\*'
 t_STRING_LIT = r'"(\.|[^"])*"'
 # WHILE LP keyword while followed by (
 t_WHILE_LP = r'while\('
-#test
 
-
+digit            = r'([0-9])'
+nondigit         = r'([_A-Za-z])'
+identifier       = r'((?!(while|if|parent | main |for|([a-zA-Z][0-9a-zA-Z]*[:\()]))\b)' + nondigit + r'(' + digit + r'|' + nondigit + r')*)'
+identifier_lp    = r'(' + identifier + r'\()'
+identifier_colon = r'(' + identifier + r':)'
+# CHAR LIT char literal
+def t_CHAR_LIT(t):
+    r'\"[a-zA-Z]{1}\"'
+    t.value = t.value[1]
+    return t
+# FLOAT LIT float literal
+# Numbers with a decimal point. No leading zeros or embedded spaces allowed.
+# May miss the integer or fractional part, but not both
+def t_FLOAT_LIT(t):
+    r'[-\+]?(\.[0-9]+)|(0\.[0-9]*)|([1-9][0-9]*\.[0-9]*)'
+    t.value = float(t.value)
+    return t
+# FOR LP keyword for followed by (
+def t_FOR_LP(t):
+  r'for(?=\s*\()'
+  return t
+# ID LP ID followed by (
+@TOKEN(identifier_lp)
+def t_ID_LP(t):
+    return t
+# # ID COLON ID followed by :
+@TOKEN(identifier_colon)
+def t_ID_COLON(t):
+    return t
+# ID
+@TOKEN(identifier)
+def t_ID(t):
+    if t.value in reserved:
+        t.type = reserved[ t.value ]
+    return t
+def t_INT_LIT(t):
+    r'\d+'
+    t.value = int(t.value)
+    return t
+# PEEKNOTELSE the lookahead token indicating that the next token is not ELSE
+def t_PEEKNOTELSE(t):
+    r'\b(?!(else)\b)\.+\b'
+    return t
 
 reserved = {
     'bool'   : 'BOOL',
@@ -318,6 +281,7 @@ class Boxes()
     !+|+@= +
     ++ + } + permanent + ) + @return parent. @= parent( return
   . else == extends false float 3.2 for () >= goto >> x y x( y : ideof for3  er : 0. .0
+  x:
 '''
 
 # Give the lexer some input
