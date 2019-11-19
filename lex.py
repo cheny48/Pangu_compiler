@@ -285,13 +285,13 @@ class Boxes()
 
 def tokenizer():
     file = open("source.pc","r")
-    for x in file:
-        lexer.input(x)
-        while True:
-            tok = lexer.token()
-            if not tok:
-                break      # No more input
-            print(tok)
+    alldata = file.read()
+    lexer.input(alldata)
+    while True:
+        tok = lexer.token()
+        if not tok:
+            break      # No more input
+        print(tok)
     file.close()
 
 tokenizer()
