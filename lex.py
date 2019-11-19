@@ -106,9 +106,9 @@ t_CLASS   = r'class'
 # as a name of a class
 t_CLASSNAME= r'[A-Z][a-zA-Z_0-9]*'
 # CLASSNAME DOT CLASSANAME followed by .
-t_CLASSNAME_DOT = r'\.'
+t_CLASSNAME_DOT = r'[A-Z][a-zA-Z_0-9]*\.'
 # CLASSNAME LP CLASSANAME followed by (
-t_CLASSNAME_LP  = r'\('
+t_CLASSNAME_LP  = r'[A-Z][a-zA-Z_0-9]*\('
 # COLON symbol :
 t_COLON   = r':'
 # COMMA symbol ,
