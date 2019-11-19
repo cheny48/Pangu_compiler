@@ -121,7 +121,7 @@ t_LT      = r'\<'
 # LTLT symbol <<
 t_LTLT    = r'\<\<'
 # MAIN LP keyword main followed by (
-t_MAIN_LP = r'main\('
+t_MAIN_LP = r'main'+ r'[ ]*' +r'\('
 # FOR LP keyword for followed by (
 t_FOR_LP = r'for\('
 # MINUS symbol -
