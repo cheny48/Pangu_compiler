@@ -1,4 +1,5 @@
 import ply.lex as lex
+from ply.lex import TOKEN
 # List of token names.   This is always required
 tokens = (
     'AND',
@@ -79,6 +80,11 @@ tokens = (
     'WHILE_LP'
 )
 
+digit            = r'([0-9])'
+nondigit         = r'([_A-Za-z])'
+identifier       = r'((?!(while|if|parent | main |for|([a-zA-Z][0-9a-zA-Z]*[:\()]))\b)' + nondigit + r'(' + digit + r'|' + nondigit + r')*)'
+identifier_lp    = r'(' + identifier + r'\()'
+identifier_colon = r'(' + identifier + r':)'
 
 # Regular expression rules for simple tokens
 
@@ -146,17 +152,17 @@ t_GE      = r'>='
 # t_GOTO    = r'goto'
 # GTGT symbol >>
 t_GTGT    = r'>>'
-# ID LP ID followed by (
+@TOKEN(identifier_lp)
 def t_ID_LP(t):
-    r'\b(?!(while\(|if\( | main\( |for\(|parent\()\b)[a-zA-Z_][a-zA-Z_0-9]*\(\b'
     return t
-# ID COLON ID followed by :
+# # ID COLON ID followed by :
+
+@TOKEN(identifier_colon)
 def t_ID_COLON(t):
-    r'\b(?!(while:|if:|parent:)\b)[a-zA-Z_][a-zA-Z_0-9]*:\b'
     return t
 # ID identier
+@TOKEN(identifier)
 def t_ID(t):
-    r'\b(?!(while|if|parent | main |for|([a-zA-Z_][0-9a-zA-Z_]*[:\()]))\b)[a-zA-Z_][0-9a-zA-Z_]*\b'
     if t.value in reserved:
         t.type = reserved[ t.value ]
     return t
@@ -276,6 +282,7 @@ def t_newline(t):
 
 # A string containing ignored characters (spaces and tabs)
 t_ignore  = ' \t'
+t_ignore_COMMENT = r'(/\*(.|\n)*?\*/)|(//.*)'
 
 # Error handling rule
 def t_error(t):
