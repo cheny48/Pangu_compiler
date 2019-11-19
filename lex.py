@@ -148,15 +148,15 @@ t_GE      = r'>='
 t_GTGT    = r'>>'
 # ID LP ID followed by (
 def t_ID_LP(t):
-  r'[a-zA-Z_][a-zA-Z_0-9]{0,255}(?=\s*\()'
-  return t
+    r'\b(?!(while\(|if\( | main\( |for\(|parent\()\b)[a-zA-Z_][a-zA-Z_0-9]*\(\b'
+    return t
 # ID COLON ID followed by :
 def t_ID_COLON(t):
-  r'[a-zA-Z_][a-zA-Z_0-9]{0,255}(?=\s*:)'
-  return t
+    r'\b(?!(while:|if:|parent:)\b)[a-zA-Z_][a-zA-Z_0-9]*:\b'
+    return t
 # ID identier
 def t_ID(t):
-    r'\b(?!(while|if|parent)\b)[a-zA-Z_][0-9a-zA-Z_]*\b'
+    r'\b(?!(while|if|parent | main |for|([a-zA-Z_][0-9a-zA-Z_]*[:\()]))\b)[a-zA-Z_][0-9a-zA-Z_]*\b'
     if t.value in reserved:
         t.type = reserved[ t.value ]
     return t
