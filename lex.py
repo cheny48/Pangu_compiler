@@ -87,13 +87,13 @@ t_AND     = r'&'
 # ASSIG symbol =
 t_ASSIGN  = r'='
 # BOOL keyword bool
-t_BOOL    = r'bool'
+# t_BOOL    = r'bool'
 # BREAK keyword break
-t_BREAK   = r'break'
+# t_BREAK   = r'break'
 # CATCH keyword catch
-t_CATCH   = r'catch'
+# t_CATCH   = r'catch'
 # CHAR keyword char
-t_CHAR    = r'char'
+# t_CHAR    = r'char'
 #t_CHAR_LIT=  r'\"[a-zA-Z]{1}\"' Made with action code
 # CHAR LIT char literal
 def t_CHAR_LIT(t):
@@ -101,7 +101,7 @@ def t_CHAR_LIT(t):
     t.value = t.value[1]
     return t
 # CLASS keyword class
-t_CLASS   = r'class'
+# t_CLASS   = r'class'
 # CLASSNAME identier that has been previously dened or declared
 # as a name of a class
 t_CLASSNAME= r'[A-Z][a-zA-Z_0-9]*'
@@ -114,23 +114,23 @@ t_COLON   = r':'
 # COMMA symbol ,
 t_COMMA   = r','
 # CONST keyword const
-t_CONST   = r'const'
+# t_CONST   = r'const'
 # CONTINUE keyword continue
-t_CONTINUE= r'continue'
+# t_CONTINUE= r'continue'
 # DOT symbol .
 t_DOT     = r'\.'
 # ELSE keyword else
-t_ELSE    = r'else'
+# t_ELSE    = r'else'
 # EQ symbol ==
 t_EQ      = r'=='
 # EXTENDS keyword extends
-t_EXTENDS = r'extends'
+# t_EXTENDS = r'extends'
 # FALSE keyword false
-t_FALSE   = r'false'
+# t_FALSE   = r'false'
 # FLOAT keyword float
-t_FLOAT   = r'float' 
+# t_FLOAT   = r'float'
 # FLOAT LIT float literal
-# Numbers with a decimal point. No leading zeros or embedded spaces allowed. 
+# Numbers with a decimal point. No leading zeros or embedded spaces allowed.
 # May miss the integer or fractional part, but not both
 def t_FLOAT_LIT(t):
     r'[-\+]?(\.[0-9]+)|(0\.[0-9]*)|([1-9][0-9]*\.[0-9]*)'
@@ -143,7 +143,7 @@ def t_FOR_LP(t):
 # GE symbol >=
 t_GE      = r'>='
 # GOTO keyword goto
-t_GOTO    = r'goto'
+# t_GOTO    = r'goto'
 # GTGT symbol >>
 t_GTGT    = r'>>'
 # ID LP ID followed by (
@@ -161,7 +161,7 @@ def t_ID(t):
         t.type = reserved[ t.value ]
     return t
 # IDOF keyword ideof
-t_IDOF    = r'ideof' 
+# t_IDOF    = r'ideof'
 # IF LP keyword if followed by (
 t_IF_LP   = r'if\('
 # INT keyword int
@@ -194,9 +194,9 @@ t_MOD     = r'\%'
 # NEQ symbol !=
 t_NEQ     = r'!='
 # NEW keyword new
-t_NEW     = r'new'
+# t_NEW     = r'new'
 # NOREF keyword noref
-t_NOREF   = r'noref'
+# t_NOREF   = r'noref'
 # NOT symbol !
 t_NOT   = r'\!'
 # OR symbol |
@@ -216,7 +216,7 @@ t_PLUS    = r'\+'
 # PLUSPLUS symbol ++
 t_PLUSPLUS = r'\+\+'
 # PRETURN keyword @return
-t_PRETURN = r'@return'
+# t_PRETURN = r'@return'
 # RB symbol }
 t_RB   = r'}'
 # RETURN keyword return
@@ -262,9 +262,9 @@ reserved = {
     'return' : 'RETURN',
     'else'      : 'ELSE',
     'extends'   : 'EXTENDS',
-    'false'     : 'FALSE', 
+    'false'     : 'FALSE',
     'float'     : 'FLOAT',
-    'goto'      : 'GOTO', 
+    'goto'      : 'GOTO',
     'ideof'     : 'IDOF',
 }
 
@@ -310,7 +310,7 @@ class Boxes()
 
     !+|+@= +
     ++ + } + permanent + ) + @return parent. @= parent( return
-  . else == extends false float 3.2 for () >= goto >> x y x( y : ideof for3  er : 0. .0 
+  . else == extends false float 3.2 for () >= goto >> x y x( y : ideof for3  er : 0. .0
 '''
 
 # Give the lexer some input
