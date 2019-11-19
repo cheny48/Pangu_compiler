@@ -122,6 +122,8 @@ t_LT      = r'\<'
 t_LTLT    = r'\<\<'
 # MAIN LP keyword main followed by (
 t_MAIN_LP = r'main\('
+# FOR LP keyword for followed by (
+t_FOR_LP = r'for\('
 # MINUS symbol -
 t_MINUS   = r'-'
 # MINUSMINUS symbol --
@@ -178,10 +180,6 @@ def t_FLOAT_LIT(t):
     r'[-\+]?(\.[0-9]+)|(0\.[0-9]*)|([1-9][0-9]*\.[0-9]*)'
     t.value = float(t.value)
     return t
-# FOR LP keyword for followed by (
-def t_FOR_LP(t):
-  r'for(?=\s*\()'
-  return t
 # ID LP ID followed by (
 @TOKEN(identifier_lp)
 def t_ID_LP(t):
@@ -280,8 +278,9 @@ class Boxes()
 
     !+|+@= +
     ++ + } + permanent + ) + @return parent. @= parent( return
-  . else == extends false float 3.2 for () >= goto >> x y x( y : ideof for3  er : 0. .0
-  x:
+  . else == extends false float 3.2
+  ==  for() >= goto >> x y x( y : ideof for3  er : 0. .0
+  x: for(
 '''
 
 # Give the lexer some input
