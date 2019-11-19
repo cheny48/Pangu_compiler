@@ -283,12 +283,15 @@ class Boxes()
   x: for(
 '''
 
-# Give the lexer some input
-lexer.input(data)
+def tokenizer():
+    file = open("source.pc","r")
+    for x in file:
+        lexer.input(x)
+        while True:
+            tok = lexer.token()
+            if not tok:
+                break      # No more input
+            print(tok)
+    file.close()
 
-# Tokenize
-while True:
-    tok = lexer.token()
-    if not tok:
-        break      # No more input
-    print(tok)
+tokenizer()
