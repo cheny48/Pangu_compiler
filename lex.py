@@ -222,7 +222,7 @@ t_PLUS    = r'\+'
 # PLUSPLUS symbol ++
 t_PLUSPLUS = r'\+\+'
 # PRETURN keyword @return
-# t_PRETURN = r'@return'
+t_PRETURN = r'@return'
 # RB symbol }
 t_RB   = r'}'
 # RETURN keyword return
