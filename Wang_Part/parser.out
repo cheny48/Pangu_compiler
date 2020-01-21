@@ -1,0 +1,936 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    ERROR
+    ID_LP
+
+Grammar
+
+Rule 0     S' -> expression
+Rule 1     expression -> simple_expression
+Rule 2     expression -> expression + expression
+Rule 3     expression -> expression - expression
+Rule 4     expression -> expression * expression
+Rule 5     expression -> expression / expression
+Rule 6     expression -> expression MOD expression
+Rule 7     expression -> expression AND expression
+Rule 8     expression -> expression OR expression
+Rule 9     expression -> - simple_expression
+Rule 10    expression -> NOT simple_expression
+Rule 11    simple_expression -> ( expression )
+Rule 12    simple_expression -> INT_LIT
+Rule 13    simple_expression -> FLOAT_LIT
+Rule 14    simple_expression -> FALSE
+Rule 15    simple_expression -> TRUE
+Rule 16    simple_expression -> CHAR_LIT
+Rule 17    simple_expression -> STRING_LIT
+Rule 18    reference -> ID_DOT reference
+Rule 19    reference -> ID
+Rule 20    simple_expression -> reference
+Rule 21    init -> = expression
+
+Terminals, with rules where they appear
+
+(                    : 11
+)                    : 11
+*                    : 4
++                    : 2
+-                    : 3 9
+/                    : 5
+=                    : 21
+AND                  : 7
+CHAR_LIT             : 16
+ERROR                : 
+FALSE                : 14
+FLOAT_LIT            : 13
+ID                   : 19
+ID_DOT               : 18
+ID_LP                : 
+INT_LIT              : 12
+MOD                  : 6
+NOT                  : 10
+OR                   : 8
+STRING_LIT           : 17
+TRUE                 : 15
+error                : 
+
+Nonterminals, with rules where they appear
+
+expression           : 2 2 3 3 4 4 5 5 6 6 7 7 8 8 11 21 0
+init                 : 
+reference            : 18 20
+simple_expression    : 1 9 10
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . expression
+    (1) expression -> . simple_expression
+    (2) expression -> . expression + expression
+    (3) expression -> . expression - expression
+    (4) expression -> . expression * expression
+    (5) expression -> . expression / expression
+    (6) expression -> . expression MOD expression
+    (7) expression -> . expression AND expression
+    (8) expression -> . expression OR expression
+    (9) expression -> . - simple_expression
+    (10) expression -> . NOT simple_expression
+    (11) simple_expression -> . ( expression )
+    (12) simple_expression -> . INT_LIT
+    (13) simple_expression -> . FLOAT_LIT
+    (14) simple_expression -> . FALSE
+    (15) simple_expression -> . TRUE
+    (16) simple_expression -> . CHAR_LIT
+    (17) simple_expression -> . STRING_LIT
+    (20) simple_expression -> . reference
+    (18) reference -> . ID_DOT reference
+    (19) reference -> . ID
+
+    -               shift and go to state 3
+    NOT             shift and go to state 4
+    (               shift and go to state 5
+    INT_LIT         shift and go to state 6
+    FLOAT_LIT       shift and go to state 7
+    FALSE           shift and go to state 8
+    TRUE            shift and go to state 9
+    CHAR_LIT        shift and go to state 10
+    STRING_LIT      shift and go to state 11
+    ID_DOT          shift and go to state 13
+    ID              shift and go to state 14
+
+    expression                     shift and go to state 1
+    simple_expression              shift and go to state 2
+    reference                      shift and go to state 12
+
+state 1
+
+    (0) S' -> expression .
+    (2) expression -> expression . + expression
+    (3) expression -> expression . - expression
+    (4) expression -> expression . * expression
+    (5) expression -> expression . / expression
+    (6) expression -> expression . MOD expression
+    (7) expression -> expression . AND expression
+    (8) expression -> expression . OR expression
+
+    +               shift and go to state 15
+    -               shift and go to state 16
+    *               shift and go to state 17
+    /               shift and go to state 18
+    MOD             shift and go to state 19
+    AND             shift and go to state 20
+    OR              shift and go to state 21
+
+
+state 2
+
+    (1) expression -> simple_expression .
+
+    +               reduce using rule 1 (expression -> simple_expression .)
+    -               reduce using rule 1 (expression -> simple_expression .)
+    *               reduce using rule 1 (expression -> simple_expression .)
+    /               reduce using rule 1 (expression -> simple_expression .)
+    MOD             reduce using rule 1 (expression -> simple_expression .)
+    AND             reduce using rule 1 (expression -> simple_expression .)
+    OR              reduce using rule 1 (expression -> simple_expression .)
+    $end            reduce using rule 1 (expression -> simple_expression .)
+    )               reduce using rule 1 (expression -> simple_expression .)
+
+
+state 3
+
+    (9) expression -> - . simple_expression
+    (11) simple_expression -> . ( expression )
+    (12) simple_expression -> . INT_LIT
+    (13) simple_expression -> . FLOAT_LIT
+    (14) simple_expression -> . FALSE
+    (15) simple_expression -> . TRUE
+    (16) simple_expression -> . CHAR_LIT
+    (17) simple_expression -> . STRING_LIT
+    (20) simple_expression -> . reference
+    (18) reference -> . ID_DOT reference
+    (19) reference -> . ID
+
+    (               shift and go to state 5
+    INT_LIT         shift and go to state 6
+    FLOAT_LIT       shift and go to state 7
+    FALSE           shift and go to state 8
+    TRUE            shift and go to state 9
+    CHAR_LIT        shift and go to state 10
+    STRING_LIT      shift and go to state 11
+    ID_DOT          shift and go to state 13
+    ID              shift and go to state 14
+
+    simple_expression              shift and go to state 22
+    reference                      shift and go to state 12
+
+state 4
+
+    (10) expression -> NOT . simple_expression
+    (11) simple_expression -> . ( expression )
+    (12) simple_expression -> . INT_LIT
+    (13) simple_expression -> . FLOAT_LIT
+    (14) simple_expression -> . FALSE
+    (15) simple_expression -> . TRUE
+    (16) simple_expression -> . CHAR_LIT
+    (17) simple_expression -> . STRING_LIT
+    (20) simple_expression -> . reference
+    (18) reference -> . ID_DOT reference
+    (19) reference -> . ID
+
+    (               shift and go to state 5
+    INT_LIT         shift and go to state 6
+    FLOAT_LIT       shift and go to state 7
+    FALSE           shift and go to state 8
+    TRUE            shift and go to state 9
+    CHAR_LIT        shift and go to state 10
+    STRING_LIT      shift and go to state 11
+    ID_DOT          shift and go to state 13
+    ID              shift and go to state 14
+
+    simple_expression              shift and go to state 23
+    reference                      shift and go to state 12
+
+state 5
+
+    (11) simple_expression -> ( . expression )
+    (1) expression -> . simple_expression
+    (2) expression -> . expression + expression
+    (3) expression -> . expression - expression
+    (4) expression -> . expression * expression
+    (5) expression -> . expression / expression
+    (6) expression -> . expression MOD expression
+    (7) expression -> . expression AND expression
+    (8) expression -> . expression OR expression
+    (9) expression -> . - simple_expression
+    (10) expression -> . NOT simple_expression
+    (11) simple_expression -> . ( expression )
+    (12) simple_expression -> . INT_LIT
+    (13) simple_expression -> . FLOAT_LIT
+    (14) simple_expression -> . FALSE
+    (15) simple_expression -> . TRUE
+    (16) simple_expression -> . CHAR_LIT
+    (17) simple_expression -> . STRING_LIT
+    (20) simple_expression -> . reference
+    (18) reference -> . ID_DOT reference
+    (19) reference -> . ID
+
+    -               shift and go to state 3
+    NOT             shift and go to state 4
+    (               shift and go to state 5
+    INT_LIT         shift and go to state 6
+    FLOAT_LIT       shift and go to state 7
+    FALSE           shift and go to state 8
+    TRUE            shift and go to state 9
+    CHAR_LIT        shift and go to state 10
+    STRING_LIT      shift and go to state 11
+    ID_DOT          shift and go to state 13
+    ID              shift and go to state 14
+
+    expression                     shift and go to state 24
+    simple_expression              shift and go to state 2
+    reference                      shift and go to state 12
+
+state 6
+
+    (12) simple_expression -> INT_LIT .
+
+    +               reduce using rule 12 (simple_expression -> INT_LIT .)
+    -               reduce using rule 12 (simple_expression -> INT_LIT .)
+    *               reduce using rule 12 (simple_expression -> INT_LIT .)
+    /               reduce using rule 12 (simple_expression -> INT_LIT .)
+    MOD             reduce using rule 12 (simple_expression -> INT_LIT .)
+    AND             reduce using rule 12 (simple_expression -> INT_LIT .)
+    OR              reduce using rule 12 (simple_expression -> INT_LIT .)
+    $end            reduce using rule 12 (simple_expression -> INT_LIT .)
+    )               reduce using rule 12 (simple_expression -> INT_LIT .)
+
+
+state 7
+
+    (13) simple_expression -> FLOAT_LIT .
+
+    +               reduce using rule 13 (simple_expression -> FLOAT_LIT .)
+    -               reduce using rule 13 (simple_expression -> FLOAT_LIT .)
+    *               reduce using rule 13 (simple_expression -> FLOAT_LIT .)
+    /               reduce using rule 13 (simple_expression -> FLOAT_LIT .)
+    MOD             reduce using rule 13 (simple_expression -> FLOAT_LIT .)
+    AND             reduce using rule 13 (simple_expression -> FLOAT_LIT .)
+    OR              reduce using rule 13 (simple_expression -> FLOAT_LIT .)
+    $end            reduce using rule 13 (simple_expression -> FLOAT_LIT .)
+    )               reduce using rule 13 (simple_expression -> FLOAT_LIT .)
+
+
+state 8
+
+    (14) simple_expression -> FALSE .
+
+    +               reduce using rule 14 (simple_expression -> FALSE .)
+    -               reduce using rule 14 (simple_expression -> FALSE .)
+    *               reduce using rule 14 (simple_expression -> FALSE .)
+    /               reduce using rule 14 (simple_expression -> FALSE .)
+    MOD             reduce using rule 14 (simple_expression -> FALSE .)
+    AND             reduce using rule 14 (simple_expression -> FALSE .)
+    OR              reduce using rule 14 (simple_expression -> FALSE .)
+    $end            reduce using rule 14 (simple_expression -> FALSE .)
+    )               reduce using rule 14 (simple_expression -> FALSE .)
+
+
+state 9
+
+    (15) simple_expression -> TRUE .
+
+    +               reduce using rule 15 (simple_expression -> TRUE .)
+    -               reduce using rule 15 (simple_expression -> TRUE .)
+    *               reduce using rule 15 (simple_expression -> TRUE .)
+    /               reduce using rule 15 (simple_expression -> TRUE .)
+    MOD             reduce using rule 15 (simple_expression -> TRUE .)
+    AND             reduce using rule 15 (simple_expression -> TRUE .)
+    OR              reduce using rule 15 (simple_expression -> TRUE .)
+    $end            reduce using rule 15 (simple_expression -> TRUE .)
+    )               reduce using rule 15 (simple_expression -> TRUE .)
+
+
+state 10
+
+    (16) simple_expression -> CHAR_LIT .
+
+    +               reduce using rule 16 (simple_expression -> CHAR_LIT .)
+    -               reduce using rule 16 (simple_expression -> CHAR_LIT .)
+    *               reduce using rule 16 (simple_expression -> CHAR_LIT .)
+    /               reduce using rule 16 (simple_expression -> CHAR_LIT .)
+    MOD             reduce using rule 16 (simple_expression -> CHAR_LIT .)
+    AND             reduce using rule 16 (simple_expression -> CHAR_LIT .)
+    OR              reduce using rule 16 (simple_expression -> CHAR_LIT .)
+    $end            reduce using rule 16 (simple_expression -> CHAR_LIT .)
+    )               reduce using rule 16 (simple_expression -> CHAR_LIT .)
+
+
+state 11
+
+    (17) simple_expression -> STRING_LIT .
+
+    +               reduce using rule 17 (simple_expression -> STRING_LIT .)
+    -               reduce using rule 17 (simple_expression -> STRING_LIT .)
+    *               reduce using rule 17 (simple_expression -> STRING_LIT .)
+    /               reduce using rule 17 (simple_expression -> STRING_LIT .)
+    MOD             reduce using rule 17 (simple_expression -> STRING_LIT .)
+    AND             reduce using rule 17 (simple_expression -> STRING_LIT .)
+    OR              reduce using rule 17 (simple_expression -> STRING_LIT .)
+    $end            reduce using rule 17 (simple_expression -> STRING_LIT .)
+    )               reduce using rule 17 (simple_expression -> STRING_LIT .)
+
+
+state 12
+
+    (20) simple_expression -> reference .
+
+    +               reduce using rule 20 (simple_expression -> reference .)
+    -               reduce using rule 20 (simple_expression -> reference .)
+    *               reduce using rule 20 (simple_expression -> reference .)
+    /               reduce using rule 20 (simple_expression -> reference .)
+    MOD             reduce using rule 20 (simple_expression -> reference .)
+    AND             reduce using rule 20 (simple_expression -> reference .)
+    OR              reduce using rule 20 (simple_expression -> reference .)
+    $end            reduce using rule 20 (simple_expression -> reference .)
+    )               reduce using rule 20 (simple_expression -> reference .)
+
+
+state 13
+
+    (18) reference -> ID_DOT . reference
+    (18) reference -> . ID_DOT reference
+    (19) reference -> . ID
+
+    ID_DOT          shift and go to state 13
+    ID              shift and go to state 14
+
+    reference                      shift and go to state 25
+
+state 14
+
+    (19) reference -> ID .
+
+    +               reduce using rule 19 (reference -> ID .)
+    -               reduce using rule 19 (reference -> ID .)
+    *               reduce using rule 19 (reference -> ID .)
+    /               reduce using rule 19 (reference -> ID .)
+    MOD             reduce using rule 19 (reference -> ID .)
+    AND             reduce using rule 19 (reference -> ID .)
+    OR              reduce using rule 19 (reference -> ID .)
+    $end            reduce using rule 19 (reference -> ID .)
+    )               reduce using rule 19 (reference -> ID .)
+
+
+state 15
+
+    (2) expression -> expression + . expression
+    (1) expression -> . simple_expression
+    (2) expression -> . expression + expression
+    (3) expression -> . expression - expression
+    (4) expression -> . expression * expression
+    (5) expression -> . expression / expression
+    (6) expression -> . expression MOD expression
+    (7) expression -> . expression AND expression
+    (8) expression -> . expression OR expression
+    (9) expression -> . - simple_expression
+    (10) expression -> . NOT simple_expression
+    (11) simple_expression -> . ( expression )
+    (12) simple_expression -> . INT_LIT
+    (13) simple_expression -> . FLOAT_LIT
+    (14) simple_expression -> . FALSE
+    (15) simple_expression -> . TRUE
+    (16) simple_expression -> . CHAR_LIT
+    (17) simple_expression -> . STRING_LIT
+    (20) simple_expression -> . reference
+    (18) reference -> . ID_DOT reference
+    (19) reference -> . ID
+
+    -               shift and go to state 3
+    NOT             shift and go to state 4
+    (               shift and go to state 5
+    INT_LIT         shift and go to state 6
+    FLOAT_LIT       shift and go to state 7
+    FALSE           shift and go to state 8
+    TRUE            shift and go to state 9
+    CHAR_LIT        shift and go to state 10
+    STRING_LIT      shift and go to state 11
+    ID_DOT          shift and go to state 13
+    ID              shift and go to state 14
+
+    expression                     shift and go to state 26
+    simple_expression              shift and go to state 2
+    reference                      shift and go to state 12
+
+state 16
+
+    (3) expression -> expression - . expression
+    (1) expression -> . simple_expression
+    (2) expression -> . expression + expression
+    (3) expression -> . expression - expression
+    (4) expression -> . expression * expression
+    (5) expression -> . expression / expression
+    (6) expression -> . expression MOD expression
+    (7) expression -> . expression AND expression
+    (8) expression -> . expression OR expression
+    (9) expression -> . - simple_expression
+    (10) expression -> . NOT simple_expression
+    (11) simple_expression -> . ( expression )
+    (12) simple_expression -> . INT_LIT
+    (13) simple_expression -> . FLOAT_LIT
+    (14) simple_expression -> . FALSE
+    (15) simple_expression -> . TRUE
+    (16) simple_expression -> . CHAR_LIT
+    (17) simple_expression -> . STRING_LIT
+    (20) simple_expression -> . reference
+    (18) reference -> . ID_DOT reference
+    (19) reference -> . ID
+
+    -               shift and go to state 3
+    NOT             shift and go to state 4
+    (               shift and go to state 5
+    INT_LIT         shift and go to state 6
+    FLOAT_LIT       shift and go to state 7
+    FALSE           shift and go to state 8
+    TRUE            shift and go to state 9
+    CHAR_LIT        shift and go to state 10
+    STRING_LIT      shift and go to state 11
+    ID_DOT          shift and go to state 13
+    ID              shift and go to state 14
+
+    expression                     shift and go to state 27
+    simple_expression              shift and go to state 2
+    reference                      shift and go to state 12
+
+state 17
+
+    (4) expression -> expression * . expression
+    (1) expression -> . simple_expression
+    (2) expression -> . expression + expression
+    (3) expression -> . expression - expression
+    (4) expression -> . expression * expression
+    (5) expression -> . expression / expression
+    (6) expression -> . expression MOD expression
+    (7) expression -> . expression AND expression
+    (8) expression -> . expression OR expression
+    (9) expression -> . - simple_expression
+    (10) expression -> . NOT simple_expression
+    (11) simple_expression -> . ( expression )
+    (12) simple_expression -> . INT_LIT
+    (13) simple_expression -> . FLOAT_LIT
+    (14) simple_expression -> . FALSE
+    (15) simple_expression -> . TRUE
+    (16) simple_expression -> . CHAR_LIT
+    (17) simple_expression -> . STRING_LIT
+    (20) simple_expression -> . reference
+    (18) reference -> . ID_DOT reference
+    (19) reference -> . ID
+
+    -               shift and go to state 3
+    NOT             shift and go to state 4
+    (               shift and go to state 5
+    INT_LIT         shift and go to state 6
+    FLOAT_LIT       shift and go to state 7
+    FALSE           shift and go to state 8
+    TRUE            shift and go to state 9
+    CHAR_LIT        shift and go to state 10
+    STRING_LIT      shift and go to state 11
+    ID_DOT          shift and go to state 13
+    ID              shift and go to state 14
+
+    expression                     shift and go to state 28
+    simple_expression              shift and go to state 2
+    reference                      shift and go to state 12
+
+state 18
+
+    (5) expression -> expression / . expression
+    (1) expression -> . simple_expression
+    (2) expression -> . expression + expression
+    (3) expression -> . expression - expression
+    (4) expression -> . expression * expression
+    (5) expression -> . expression / expression
+    (6) expression -> . expression MOD expression
+    (7) expression -> . expression AND expression
+    (8) expression -> . expression OR expression
+    (9) expression -> . - simple_expression
+    (10) expression -> . NOT simple_expression
+    (11) simple_expression -> . ( expression )
+    (12) simple_expression -> . INT_LIT
+    (13) simple_expression -> . FLOAT_LIT
+    (14) simple_expression -> . FALSE
+    (15) simple_expression -> . TRUE
+    (16) simple_expression -> . CHAR_LIT
+    (17) simple_expression -> . STRING_LIT
+    (20) simple_expression -> . reference
+    (18) reference -> . ID_DOT reference
+    (19) reference -> . ID
+
+    -               shift and go to state 3
+    NOT             shift and go to state 4
+    (               shift and go to state 5
+    INT_LIT         shift and go to state 6
+    FLOAT_LIT       shift and go to state 7
+    FALSE           shift and go to state 8
+    TRUE            shift and go to state 9
+    CHAR_LIT        shift and go to state 10
+    STRING_LIT      shift and go to state 11
+    ID_DOT          shift and go to state 13
+    ID              shift and go to state 14
+
+    expression                     shift and go to state 29
+    simple_expression              shift and go to state 2
+    reference                      shift and go to state 12
+
+state 19
+
+    (6) expression -> expression MOD . expression
+    (1) expression -> . simple_expression
+    (2) expression -> . expression + expression
+    (3) expression -> . expression - expression
+    (4) expression -> . expression * expression
+    (5) expression -> . expression / expression
+    (6) expression -> . expression MOD expression
+    (7) expression -> . expression AND expression
+    (8) expression -> . expression OR expression
+    (9) expression -> . - simple_expression
+    (10) expression -> . NOT simple_expression
+    (11) simple_expression -> . ( expression )
+    (12) simple_expression -> . INT_LIT
+    (13) simple_expression -> . FLOAT_LIT
+    (14) simple_expression -> . FALSE
+    (15) simple_expression -> . TRUE
+    (16) simple_expression -> . CHAR_LIT
+    (17) simple_expression -> . STRING_LIT
+    (20) simple_expression -> . reference
+    (18) reference -> . ID_DOT reference
+    (19) reference -> . ID
+
+    -               shift and go to state 3
+    NOT             shift and go to state 4
+    (               shift and go to state 5
+    INT_LIT         shift and go to state 6
+    FLOAT_LIT       shift and go to state 7
+    FALSE           shift and go to state 8
+    TRUE            shift and go to state 9
+    CHAR_LIT        shift and go to state 10
+    STRING_LIT      shift and go to state 11
+    ID_DOT          shift and go to state 13
+    ID              shift and go to state 14
+
+    expression                     shift and go to state 30
+    simple_expression              shift and go to state 2
+    reference                      shift and go to state 12
+
+state 20
+
+    (7) expression -> expression AND . expression
+    (1) expression -> . simple_expression
+    (2) expression -> . expression + expression
+    (3) expression -> . expression - expression
+    (4) expression -> . expression * expression
+    (5) expression -> . expression / expression
+    (6) expression -> . expression MOD expression
+    (7) expression -> . expression AND expression
+    (8) expression -> . expression OR expression
+    (9) expression -> . - simple_expression
+    (10) expression -> . NOT simple_expression
+    (11) simple_expression -> . ( expression )
+    (12) simple_expression -> . INT_LIT
+    (13) simple_expression -> . FLOAT_LIT
+    (14) simple_expression -> . FALSE
+    (15) simple_expression -> . TRUE
+    (16) simple_expression -> . CHAR_LIT
+    (17) simple_expression -> . STRING_LIT
+    (20) simple_expression -> . reference
+    (18) reference -> . ID_DOT reference
+    (19) reference -> . ID
+
+    -               shift and go to state 3
+    NOT             shift and go to state 4
+    (               shift and go to state 5
+    INT_LIT         shift and go to state 6
+    FLOAT_LIT       shift and go to state 7
+    FALSE           shift and go to state 8
+    TRUE            shift and go to state 9
+    CHAR_LIT        shift and go to state 10
+    STRING_LIT      shift and go to state 11
+    ID_DOT          shift and go to state 13
+    ID              shift and go to state 14
+
+    expression                     shift and go to state 31
+    simple_expression              shift and go to state 2
+    reference                      shift and go to state 12
+
+state 21
+
+    (8) expression -> expression OR . expression
+    (1) expression -> . simple_expression
+    (2) expression -> . expression + expression
+    (3) expression -> . expression - expression
+    (4) expression -> . expression * expression
+    (5) expression -> . expression / expression
+    (6) expression -> . expression MOD expression
+    (7) expression -> . expression AND expression
+    (8) expression -> . expression OR expression
+    (9) expression -> . - simple_expression
+    (10) expression -> . NOT simple_expression
+    (11) simple_expression -> . ( expression )
+    (12) simple_expression -> . INT_LIT
+    (13) simple_expression -> . FLOAT_LIT
+    (14) simple_expression -> . FALSE
+    (15) simple_expression -> . TRUE
+    (16) simple_expression -> . CHAR_LIT
+    (17) simple_expression -> . STRING_LIT
+    (20) simple_expression -> . reference
+    (18) reference -> . ID_DOT reference
+    (19) reference -> . ID
+
+    -               shift and go to state 3
+    NOT             shift and go to state 4
+    (               shift and go to state 5
+    INT_LIT         shift and go to state 6
+    FLOAT_LIT       shift and go to state 7
+    FALSE           shift and go to state 8
+    TRUE            shift and go to state 9
+    CHAR_LIT        shift and go to state 10
+    STRING_LIT      shift and go to state 11
+    ID_DOT          shift and go to state 13
+    ID              shift and go to state 14
+
+    expression                     shift and go to state 32
+    simple_expression              shift and go to state 2
+    reference                      shift and go to state 12
+
+state 22
+
+    (9) expression -> - simple_expression .
+
+    +               reduce using rule 9 (expression -> - simple_expression .)
+    -               reduce using rule 9 (expression -> - simple_expression .)
+    *               reduce using rule 9 (expression -> - simple_expression .)
+    /               reduce using rule 9 (expression -> - simple_expression .)
+    MOD             reduce using rule 9 (expression -> - simple_expression .)
+    AND             reduce using rule 9 (expression -> - simple_expression .)
+    OR              reduce using rule 9 (expression -> - simple_expression .)
+    $end            reduce using rule 9 (expression -> - simple_expression .)
+    )               reduce using rule 9 (expression -> - simple_expression .)
+
+
+state 23
+
+    (10) expression -> NOT simple_expression .
+
+    +               reduce using rule 10 (expression -> NOT simple_expression .)
+    -               reduce using rule 10 (expression -> NOT simple_expression .)
+    *               reduce using rule 10 (expression -> NOT simple_expression .)
+    /               reduce using rule 10 (expression -> NOT simple_expression .)
+    MOD             reduce using rule 10 (expression -> NOT simple_expression .)
+    AND             reduce using rule 10 (expression -> NOT simple_expression .)
+    OR              reduce using rule 10 (expression -> NOT simple_expression .)
+    $end            reduce using rule 10 (expression -> NOT simple_expression .)
+    )               reduce using rule 10 (expression -> NOT simple_expression .)
+
+
+state 24
+
+    (11) simple_expression -> ( expression . )
+    (2) expression -> expression . + expression
+    (3) expression -> expression . - expression
+    (4) expression -> expression . * expression
+    (5) expression -> expression . / expression
+    (6) expression -> expression . MOD expression
+    (7) expression -> expression . AND expression
+    (8) expression -> expression . OR expression
+
+    )               shift and go to state 33
+    +               shift and go to state 15
+    -               shift and go to state 16
+    *               shift and go to state 17
+    /               shift and go to state 18
+    MOD             shift and go to state 19
+    AND             shift and go to state 20
+    OR              shift and go to state 21
+
+
+state 25
+
+    (18) reference -> ID_DOT reference .
+
+    +               reduce using rule 18 (reference -> ID_DOT reference .)
+    -               reduce using rule 18 (reference -> ID_DOT reference .)
+    *               reduce using rule 18 (reference -> ID_DOT reference .)
+    /               reduce using rule 18 (reference -> ID_DOT reference .)
+    MOD             reduce using rule 18 (reference -> ID_DOT reference .)
+    AND             reduce using rule 18 (reference -> ID_DOT reference .)
+    OR              reduce using rule 18 (reference -> ID_DOT reference .)
+    $end            reduce using rule 18 (reference -> ID_DOT reference .)
+    )               reduce using rule 18 (reference -> ID_DOT reference .)
+
+
+state 26
+
+    (2) expression -> expression + expression .
+    (2) expression -> expression . + expression
+    (3) expression -> expression . - expression
+    (4) expression -> expression . * expression
+    (5) expression -> expression . / expression
+    (6) expression -> expression . MOD expression
+    (7) expression -> expression . AND expression
+    (8) expression -> expression . OR expression
+
+    +               reduce using rule 2 (expression -> expression + expression .)
+    -               reduce using rule 2 (expression -> expression + expression .)
+    $end            reduce using rule 2 (expression -> expression + expression .)
+    )               reduce using rule 2 (expression -> expression + expression .)
+    *               shift and go to state 17
+    /               shift and go to state 18
+    MOD             shift and go to state 19
+    AND             shift and go to state 20
+    OR              shift and go to state 21
+
+  ! *               [ reduce using rule 2 (expression -> expression + expression .) ]
+  ! /               [ reduce using rule 2 (expression -> expression + expression .) ]
+  ! MOD             [ reduce using rule 2 (expression -> expression + expression .) ]
+  ! AND             [ reduce using rule 2 (expression -> expression + expression .) ]
+  ! OR              [ reduce using rule 2 (expression -> expression + expression .) ]
+  ! +               [ shift and go to state 15 ]
+  ! -               [ shift and go to state 16 ]
+
+
+state 27
+
+    (3) expression -> expression - expression .
+    (2) expression -> expression . + expression
+    (3) expression -> expression . - expression
+    (4) expression -> expression . * expression
+    (5) expression -> expression . / expression
+    (6) expression -> expression . MOD expression
+    (7) expression -> expression . AND expression
+    (8) expression -> expression . OR expression
+
+    +               reduce using rule 3 (expression -> expression - expression .)
+    -               reduce using rule 3 (expression -> expression - expression .)
+    $end            reduce using rule 3 (expression -> expression - expression .)
+    )               reduce using rule 3 (expression -> expression - expression .)
+    *               shift and go to state 17
+    /               shift and go to state 18
+    MOD             shift and go to state 19
+    AND             shift and go to state 20
+    OR              shift and go to state 21
+
+  ! *               [ reduce using rule 3 (expression -> expression - expression .) ]
+  ! /               [ reduce using rule 3 (expression -> expression - expression .) ]
+  ! MOD             [ reduce using rule 3 (expression -> expression - expression .) ]
+  ! AND             [ reduce using rule 3 (expression -> expression - expression .) ]
+  ! OR              [ reduce using rule 3 (expression -> expression - expression .) ]
+  ! +               [ shift and go to state 15 ]
+  ! -               [ shift and go to state 16 ]
+
+
+state 28
+
+    (4) expression -> expression * expression .
+    (2) expression -> expression . + expression
+    (3) expression -> expression . - expression
+    (4) expression -> expression . * expression
+    (5) expression -> expression . / expression
+    (6) expression -> expression . MOD expression
+    (7) expression -> expression . AND expression
+    (8) expression -> expression . OR expression
+
+    +               reduce using rule 4 (expression -> expression * expression .)
+    -               reduce using rule 4 (expression -> expression * expression .)
+    *               reduce using rule 4 (expression -> expression * expression .)
+    /               reduce using rule 4 (expression -> expression * expression .)
+    MOD             reduce using rule 4 (expression -> expression * expression .)
+    AND             reduce using rule 4 (expression -> expression * expression .)
+    OR              reduce using rule 4 (expression -> expression * expression .)
+    $end            reduce using rule 4 (expression -> expression * expression .)
+    )               reduce using rule 4 (expression -> expression * expression .)
+
+  ! +               [ shift and go to state 15 ]
+  ! -               [ shift and go to state 16 ]
+  ! *               [ shift and go to state 17 ]
+  ! /               [ shift and go to state 18 ]
+  ! MOD             [ shift and go to state 19 ]
+  ! AND             [ shift and go to state 20 ]
+  ! OR              [ shift and go to state 21 ]
+
+
+state 29
+
+    (5) expression -> expression / expression .
+    (2) expression -> expression . + expression
+    (3) expression -> expression . - expression
+    (4) expression -> expression . * expression
+    (5) expression -> expression . / expression
+    (6) expression -> expression . MOD expression
+    (7) expression -> expression . AND expression
+    (8) expression -> expression . OR expression
+
+    +               reduce using rule 5 (expression -> expression / expression .)
+    -               reduce using rule 5 (expression -> expression / expression .)
+    *               reduce using rule 5 (expression -> expression / expression .)
+    /               reduce using rule 5 (expression -> expression / expression .)
+    MOD             reduce using rule 5 (expression -> expression / expression .)
+    AND             reduce using rule 5 (expression -> expression / expression .)
+    OR              reduce using rule 5 (expression -> expression / expression .)
+    $end            reduce using rule 5 (expression -> expression / expression .)
+    )               reduce using rule 5 (expression -> expression / expression .)
+
+  ! +               [ shift and go to state 15 ]
+  ! -               [ shift and go to state 16 ]
+  ! *               [ shift and go to state 17 ]
+  ! /               [ shift and go to state 18 ]
+  ! MOD             [ shift and go to state 19 ]
+  ! AND             [ shift and go to state 20 ]
+  ! OR              [ shift and go to state 21 ]
+
+
+state 30
+
+    (6) expression -> expression MOD expression .
+    (2) expression -> expression . + expression
+    (3) expression -> expression . - expression
+    (4) expression -> expression . * expression
+    (5) expression -> expression . / expression
+    (6) expression -> expression . MOD expression
+    (7) expression -> expression . AND expression
+    (8) expression -> expression . OR expression
+
+    +               reduce using rule 6 (expression -> expression MOD expression .)
+    -               reduce using rule 6 (expression -> expression MOD expression .)
+    *               reduce using rule 6 (expression -> expression MOD expression .)
+    /               reduce using rule 6 (expression -> expression MOD expression .)
+    MOD             reduce using rule 6 (expression -> expression MOD expression .)
+    AND             reduce using rule 6 (expression -> expression MOD expression .)
+    OR              reduce using rule 6 (expression -> expression MOD expression .)
+    $end            reduce using rule 6 (expression -> expression MOD expression .)
+    )               reduce using rule 6 (expression -> expression MOD expression .)
+
+  ! +               [ shift and go to state 15 ]
+  ! -               [ shift and go to state 16 ]
+  ! *               [ shift and go to state 17 ]
+  ! /               [ shift and go to state 18 ]
+  ! MOD             [ shift and go to state 19 ]
+  ! AND             [ shift and go to state 20 ]
+  ! OR              [ shift and go to state 21 ]
+
+
+state 31
+
+    (7) expression -> expression AND expression .
+    (2) expression -> expression . + expression
+    (3) expression -> expression . - expression
+    (4) expression -> expression . * expression
+    (5) expression -> expression . / expression
+    (6) expression -> expression . MOD expression
+    (7) expression -> expression . AND expression
+    (8) expression -> expression . OR expression
+
+    +               reduce using rule 7 (expression -> expression AND expression .)
+    -               reduce using rule 7 (expression -> expression AND expression .)
+    *               reduce using rule 7 (expression -> expression AND expression .)
+    /               reduce using rule 7 (expression -> expression AND expression .)
+    MOD             reduce using rule 7 (expression -> expression AND expression .)
+    AND             reduce using rule 7 (expression -> expression AND expression .)
+    OR              reduce using rule 7 (expression -> expression AND expression .)
+    $end            reduce using rule 7 (expression -> expression AND expression .)
+    )               reduce using rule 7 (expression -> expression AND expression .)
+
+  ! +               [ shift and go to state 15 ]
+  ! -               [ shift and go to state 16 ]
+  ! *               [ shift and go to state 17 ]
+  ! /               [ shift and go to state 18 ]
+  ! MOD             [ shift and go to state 19 ]
+  ! AND             [ shift and go to state 20 ]
+  ! OR              [ shift and go to state 21 ]
+
+
+state 32
+
+    (8) expression -> expression OR expression .
+    (2) expression -> expression . + expression
+    (3) expression -> expression . - expression
+    (4) expression -> expression . * expression
+    (5) expression -> expression . / expression
+    (6) expression -> expression . MOD expression
+    (7) expression -> expression . AND expression
+    (8) expression -> expression . OR expression
+
+    +               reduce using rule 8 (expression -> expression OR expression .)
+    -               reduce using rule 8 (expression -> expression OR expression .)
+    *               reduce using rule 8 (expression -> expression OR expression .)
+    /               reduce using rule 8 (expression -> expression OR expression .)
+    MOD             reduce using rule 8 (expression -> expression OR expression .)
+    AND             reduce using rule 8 (expression -> expression OR expression .)
+    OR              reduce using rule 8 (expression -> expression OR expression .)
+    $end            reduce using rule 8 (expression -> expression OR expression .)
+    )               reduce using rule 8 (expression -> expression OR expression .)
+
+  ! +               [ shift and go to state 15 ]
+  ! -               [ shift and go to state 16 ]
+  ! *               [ shift and go to state 17 ]
+  ! /               [ shift and go to state 18 ]
+  ! MOD             [ shift and go to state 19 ]
+  ! AND             [ shift and go to state 20 ]
+  ! OR              [ shift and go to state 21 ]
+
+
+state 33
+
+    (11) simple_expression -> ( expression ) .
+
+    +               reduce using rule 11 (simple_expression -> ( expression ) .)
+    -               reduce using rule 11 (simple_expression -> ( expression ) .)
+    *               reduce using rule 11 (simple_expression -> ( expression ) .)
+    /               reduce using rule 11 (simple_expression -> ( expression ) .)
+    MOD             reduce using rule 11 (simple_expression -> ( expression ) .)
+    AND             reduce using rule 11 (simple_expression -> ( expression ) .)
+    OR              reduce using rule 11 (simple_expression -> ( expression ) .)
+    $end            reduce using rule 11 (simple_expression -> ( expression ) .)
+    )               reduce using rule 11 (simple_expression -> ( expression ) .)
+
